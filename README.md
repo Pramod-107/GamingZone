@@ -1,4 +1,4 @@
-# Gaming Hub
+# GamingZone
 A web-based gaming platform featuring classic games built with modern web technologies. Experience timeless games directly through your browser without any downloads or installations.
 
 
