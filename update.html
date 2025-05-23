@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coming Soon</title>
+    <style>
+        body {
+            background: rgb(28, 28, 28); 
+            color: #ff7300;    
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .message {
+            font-size: 2rem;
+            text-align: center;
+            background: #181818; /* match card background */
+            color: #ff7300;      /* match orange text */
+            padding: 2.5rem 3.5rem;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px #ff7300; /* orange shadow */
+            border: 2px solid #ff7300;
+            max-width: 400px;
+        }
+        .back-btn {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            background-color: #232323;
+            color: #ff7300;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid #ff7300;
+            transition: background 0.3s, color 0.3s;
+            margin-top: 0;
+            z-index: 1000;
+        }
+        .back-btn:hover {
+            background-color: #ff7300;
+            color: #181818;
+        }
+    </style>
+</head>
+<body>
+    <a href="games.html" class="back-btn">← Back to menu</a>
+    <div class="message">
+        We are still building the game,<br>stay tuned!
+    </div>
+</body>
+</html>
