@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Hangman</title>
+        <link rel="stylesheet" href="hangmanstyle.css">
+        <script src="hangmanwords.js" defer></script>
+        <script src="hangmanscript.js" defer></script>
+    </head>
+
+    <body> 
+        <!-- Game over modal that appears when game ends -->
+        <div class="game-modal">
+            <div class="content">
+                <img src="#" alt="gif">  <!-- Placeholder for win/lose gif -->
+                <h4>Game Over!</h4>      <!-- Game over message -->
+                <p>The correct word was: <b>rainbow</b></p>  <!-- Shows the answer -->
+                <button class="play-again">Play Again</button>  <!-- Restart button -->
+            </div>
+        </div>
+
+        <!-- Main game container -->
+        <div class="container">
+            <!-- Back button -->
+            <a href="games.html" class="back-button">
+                <button>← Back to menu</button>
+            </a>
+
+            <!-- Left side with hangman image -->
+            <div class="hangman-box">
+                <img src="#" draggable="false" alt="hangman-img">  <!-- Hangman image -->
+                <h1>Hangman Game</h1>  <!-- Game title -->
+            </div>
+
+            <!-- Right side with game controls -->
+            <div class="game-box">
+                <ul class="word-display"></ul>  <!-- Where the word letters appear -->
+                <h4 class="hint-text">Hint: <b></b></h4>  <!-- Shows hint for the word -->
+                <h4 class="guesses-text">Incorrect guesses: <b></b></h4>  <!-- Shows wrong guesses -->
+                <div class="keyboard"></div>  <!-- Virtual keyboard container -->
+            </div>
+        </div>    
+    </body>
+</html>
