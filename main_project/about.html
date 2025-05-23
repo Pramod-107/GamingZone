@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-container {
+            max-width: 1200px;
+            margin: 70px auto 0;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .team-description {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            color: #C06B3E;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .team-member {
+            background: rgba(145, 73, 34, 0.1);
+            border: 2px solid #C06B3E;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .team-member img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;      /* Ensures the image fills the circle without distortion */
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #C06B3E;
+            background: #232323;    /* fallback background */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .team-member h3 {
+            color: #C06B3E;
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+
+        .team-member p {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .linkedin-link img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .linkedin-link:hover img {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 900px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .home-button {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            background-color: rgb(28, 28, 28);
+            color: #fff;
+            padding: 12px 20px;
+            border: 2px solid #C06B3E;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .home-button:hover {
+            background-color: #C06B3E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(192, 107, 62, 0.4);
+        }
+    </style>
+</head>
+<body style="background: rgb(28, 28, 28);">
+    <button class="home-button" onclick="window.location.href='index.html'">← Back to Home</button>
+    
+    <main class="about-container">
+        <h1>Meet Our Team</h1>
+        <div class="team-description">
+            <p>We are a team of three students from Amrita Vishwa Vidyapeetham, Bangalore campus. As part of the UID project, we collaborated to develop a gaming platform that balances aesthetic appeal with intuitive functionality. Through collaborative ideation and implementation, we've worked to deliver a seamless user experience.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="pramod.jpeg" alt="Pramod ">
+                <h3>Surya Pramod .J</h3>
+                <p>I am a freshman at Amrita University, Bangalore, pursuing a degree in Artificial Intelligence Engineering. I am committed to building a strong foundation in this rapidly evolving field while actively seeking opportunities to expand my knowledge and skills through academic excellence and industry engagement.</p>
+                <a href="https://www.linkedin.com/in/surya-pramod-josyula/" class="linkedin-link">LinkedIn</a>
+            </div>
+            <div class="team-member">
+                <img src="santosh.jpeg" alt="Santosh">
+                <h3>Sanka Santosh</h3>
+                <p>A passionate and self-driven student with a keen interest in technology, innovation, and problem-solving. Eager to explore emerging trends, build impactful projects, and continuously learn to contribute effectively in dynamic tech environments.</p>
+                <a href="https://www.linkedin.com/in/santhosh-sanka-995b25205/" class="linkedin-link">LinkedIn</a>
+            </div>
+            <div class="team-member">
+                <img src="vijay.jpeg" alt="VijayNath">
+                <h3>K. Vijaynath Sharma</h3>
+                <p>I am an aspiring engineering student with a strong passion for technology and innovation. I am highly motivated, eager to learn, and always strive for excellence in my academic and professional pursuits. My analytical thinking, problem-solving abilities, and dedication make me a valuable asset in my team.</p>
+                <a href="www.linkedin.com/in/vijaynath-sharma-a71bb8353" class="linkedin-link">LinkedIn</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

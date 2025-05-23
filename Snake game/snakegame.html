@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Snake Game</title>
+<style>
+  body {
+    background: #171717;
+    color: white;
+    font-family: monospace;
+    text-align: center;
+  }
+  #game {
+    position: relative;
+    margin: 20px auto;
+    width: 400px;
+    height: 400px;
+    background: #e0e0e0;
+    font-size: 0;
+  }
+  .tile {
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    float: left;
+    border: 1px solid #ccc;
+  }
+  .snake {
+    background: black;
+  }
+  .fruit {
+    background: green;
+    border-radius: 5px;
+  }
+  #score {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  #restart, #backBtn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<a href="../main_project/games.html" id="backBtn" style="position: fixed; top: 24px; left: 24px; background-color: #232323; color: #ff7300; text-decoration: none; padding: 10px 22px; border-radius: 10px; font-size: 1rem; font-weight: bold; border: 2px solid #ff7300; transition: background 0.3s, color 0.3s; margin-top: 0; z-index: 1000;">← Back to Menu</a>
+
+<h1>Snake Game </h1>
+<div id="game"></div>
+<div id="score">Score: 0</div>
+<button id="restart">Restart</button>
+<br>
+
+<script>
+(function() {
+  // Constants
+  var gridSize = 20;
+  var tileCount = gridSize * gridSize;
+
+  // Variables
+  var gameDiv = document.getElementById('game');
+  var scoreDiv = document.getElementById('score');
+  var restartBtn = document.getElementById('restart');
+  var tiles = [];
+  var snake = [3,2,1];
+  var direction = 'right';
+  var fruitIndex = 0;
+  var score = 0;
+  var gameRunning = false;
+
+  // Manual PRNG - simple linear congruential generator
+  var seed = 1;
+  function randomInt(max) {
+    seed = (seed * 9301 + 49297) % 233280;
+    var rnd = seed / 233280;
+    return Math.floor(rnd * max);
+  }
+
+  // Create grid tiles
+  function createGrid() {
+    gameDiv.innerHTML = '';
+    tiles = [];
+    for(var i=0; i<tileCount; i++) {
+      var tile = document.createElement('div');
+      tile.className = 'tile';
+      gameDiv.appendChild(tile);
+      tiles.push(tile);
+    }
+  }
+
+  // Clear all tile classes (snake, fruit)
+  function clearTiles() {
+    for(var i=0; i<tiles.length; i++) {
+      tiles[i].className = 'tile';
+    }
+  }
+
+  // Draw snake and fruit on grid
+  function draw() {
+    clearTiles();
+    // draw snake
+    for(var i=0; i<snake.length; i++) {
+      tiles[snake[i]].className = 'tile snake';
+    }
+    // draw fruit
+    tiles[fruitIndex].className = 'tile fruit';
+  }
+
+  // Generate new fruit index not on snake
+  function generateFruit() {
+    var index;
+    do {
+      index = randomInt(tileCount);
+    } while (indexInSnake(index));
+    fruitIndex = index;
+  }
+
+  // Check if index is part of snake
+  function indexInSnake(idx) {
+    for(var i=0; i<snake.length; i++) {
+      if(snake[i] === idx) return true;
+    }
+    return false;
+  }
+
+  // Move snake based on direction
+  function moveSnake() {
+    var head = snake[0];
+    var row = Math.floor(head / gridSize);
+    var col = head % gridSize;
+    var newHead;
+
+    if(direction === 'right') {
+      col++;
+      if(col >= gridSize) col = 0;
+    } else if(direction === 'left') {
+      col--;
+      if(col < 0) col = gridSize - 1;
+    } else if(direction === 'up') {
+      row--;
+      if(row < 0) row = gridSize - 1;
+    } else if(direction === 'down') {
+      row++;
+      if(row >= gridSize) row = 0;
+    }
+    newHead = row * gridSize + col;
+
+    // Check collision with snake body
+    if(indexInSnake(newHead)) {
+      gameOver();
+      return;
+    }
+
+    snake.unshift(newHead); // add new head
+
+    // Check if fruit eaten
+    if(newHead === fruitIndex) {
+      score++;
+      scoreDiv.innerHTML = 'Score: ' + score;
+      generateFruit();
+    } else {
+      snake.pop(); // remove tail
+    }
+  }
+
+  // Game over logic
+  function gameOver() {
+    alert('Game Over! Your score was: ' + score);
+    gameRunning = false;
+  }
+
+  // Game loop using setTimeout (recursive)
+  function gameLoop() {
+    if(!gameRunning) return;
+    moveSnake();
+    draw();
+    setTimeout(gameLoop, 100);
+  }
+
+  // Key press handler
+  function keyHandler(e) {
+    var key = e.keyCode;
+    // Left: 37, Up: 38, Right: 39, Down: 40
+    if(key === 37 && direction !== 'right') direction = 'left';
+    else if(key === 38 && direction !== 'down') direction = 'up';
+    else if(key === 39 && direction !== 'left') direction = 'right';
+    else if(key === 40 && direction !== 'up') direction = 'down';
+  }
+
+  // Start or restart game
+  function startGame() {
+    snake = [3,2,1];
+    direction = 'right';
+    score = 0;
+    scoreDiv.innerHTML = 'Score: 0';
+    generateFruit();
+    draw();
+    gameRunning = true;
+    gameLoop();
+  }
+
+  // Initialize
+  createGrid();
+  startGame();
+
+  // Events
+  document.onkeydown = keyHandler;
+  restartBtn.onclick = function() {
+    gameRunning = false;
+    startGame();
+  };
+
+})();
+</script>
+
+</body>
+</html>
