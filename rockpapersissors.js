@@ -49,21 +49,3 @@ function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-/* Add to rockpapersissors.css */
-.back-btn {
-    display: inline-block;
-    background-color: #232323;
-    color: #ff7300;
-    text-decoration: none;
-    padding: 10px 22px;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: 2px solid #ff7300;
-    transition: background 0.3s, color 0.3s;
-    margin-top: 10px;
-}
-.back-btn:hover {
-    background-color: #ff7300;
-    color: #181818;
-}
